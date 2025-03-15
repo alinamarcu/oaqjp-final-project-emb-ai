@@ -15,6 +15,15 @@ def emotion_detector(text_to_analyse):
     if response.status_code == 200:
         response_json = response.json()
         return parse_the_response_json(response_json)
+    elif response.status_code == 400:
+        return {
+            'anger': None,
+            'disgust': None,
+            'fear': None,
+            'joy': None,
+            'sadness': None,
+            'dominant_emotion': None
+        }
     else:
         raise Exception(f"Request failed with status code {response.status_code}: {response.text}")
 
